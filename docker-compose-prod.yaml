@@ -1,8 +1,9 @@
-# docker-compose-developpement.yaml
+# docker-compose-production.yaml
 services:
     # nginx
     web:
-        image: nginx:latest
+        build:
+            dockerfile: ./nginx/Dockerfile
         ports:
             - "80:80"
         volumes:
@@ -11,21 +12,17 @@ services:
     app:
         build:
             dockerfile: ./php/Dockerfile
-        volumes:
-            - ./app:/var/www/html
+    
     # mysql
     db:
         image: mysql:8.0
         volumes:
             - mysqldata:/var/lib/mysql
-        # we dont expose db ports in prod     
-        ports:
-            - "3306:3306"
-          
+       
         restart: unless-stopped
         environment:
             MYSQL_ROOT_PASSWORD: secret
-            MYSQL_USER: root
+            MYSQL_USER: user
             MYSQL_PASSWORD: secret
             MYSQL_DATABASE: docker-php
     # redis
