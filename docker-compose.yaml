@@ -13,6 +13,12 @@ services:
             dockerfile: ./php/Dockerfile
         volumes:
             - ./app:/var/www/html
+        environment:    
+            MYSQL_HOST: db
+            MYSQL_PORT: ${MYSQL_PORT}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
     # mysql
     db:
         image: mysql:8.0
@@ -24,11 +30,11 @@ services:
           
         restart: unless-stopped
         environment:
-            MYSQL_ROOT_PASSWORD: secret
-            MYSQL_USER: root
-            MYSQL_PASSWORD: secret
-            MYSQL_DATABASE: docker-php
-    # redis
+            MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+
 
 volumes:
     mysqldata:
