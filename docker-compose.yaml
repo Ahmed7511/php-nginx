@@ -19,8 +19,10 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
             MYSQL_USER: ${MYSQL_USER}
-    # mysql
-    db:
+            REDIS_HOST: cache
+            REDIS_PORT: ${REDIS_PORT}
+    # mysql: docker compose exec db sh -c 'mysql -uuser -p${MYSQL_PASSWORD}'
+    db:  
         image: mysql:8.0
         volumes:
             - mysqldata:/var/lib/mysql
@@ -34,7 +36,8 @@ services:
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
-
+    cache:
+        image: redis:latest         
 
 volumes:
     mysqldata:
