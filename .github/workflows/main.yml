@@ -1,4 +1,4 @@
-name: php
+name: learn-php-docker
 
 on:
   push:
@@ -12,3 +12,8 @@ jobs:
             - uses: actions/checkout@v3
             - name: Install Composer Dependencies
               working-directory: ./app
+            - run: docker build --target app -t ahmed75dev/learn-php-docker:1.1 -f ./php/Dockerfile .
+            - run: docker build -t ahmed75dev/nginx-php:1.0 -f ./nginx/Dockerfile .
+            - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCES_TOKEN }}
+            - run: docker push ahmed75dev/learn-php-docker:1.1 
+            - run: docker push ahmed75dev/nginx-php:1.0
