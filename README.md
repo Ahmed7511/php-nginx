@@ -1,3 +1,3 @@
 # php-nginx
 
-# c'est un projet pour pratiqué mes connaissances en docker 
+# c'est un projet pour pratiquer mes connaissances en docker 
