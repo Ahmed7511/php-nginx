@@ -1,6 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase ;
 
-class LanguageTest extends \PHPUnit\Framework\TestCase
+class LanguageTest extends TestCase
 {
     public function testItWorks(): void
     {
